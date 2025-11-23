@@ -61,3 +61,27 @@ cd /d E:\Laravel\Laravel_Projects
 ```bash
 git clone git@github.com:username/repository.git
 ```
+
+
+### Cloning github repository
+```
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone GitHub Repo') {
+            steps {
+                git branch: 'main',
+                    url: 'git@github.com:masterArnob/Advanced-Laravel-Concepts.git',
+                    credentialsId: 'my-ssh-private-key'
+            }
+        }
+
+        stage('List Files') {
+            steps {
+                sh 'ls -la'
+            }
+        }
+    }
+}
+```
