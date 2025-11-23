@@ -21,7 +21,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 
 Step 4: Copy the public key
 ```bash
-cat ~/.ssh/id_ed25519.pub
+cat ~/.ssh/id_ed25519.pub | clip.exe
 ```
 
 step 5: Put key to github
