@@ -53,11 +53,16 @@ source ~/.bashrc
 ```
 
 Step 7: SSH connection test
-```
+```bash
 ssh -T git@github.com
 ```
 
-Step 8: Clone Repository
+Step 8: Change directory
+```bash
+cd /d E:\Laravel\Laravel_Projects
 ```
+
+Step 9: Clone Repository
+```bash
 git clone git@github.com:username/repository.git
 ```
