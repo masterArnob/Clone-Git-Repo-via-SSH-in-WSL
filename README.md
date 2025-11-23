@@ -4,8 +4,6 @@ Step-by-step guide to set up SSH keys in WSL and clone Git repositories without 
 
 ### Step 1: Open WSL
 ```bash
-wsl
-# or specific distro
 wsl -d Ubuntu
 ```
 
@@ -19,17 +17,23 @@ lsb_release -a
 ls -al ~/.ssh
 ```
 
-### Step 4: Generate Key
+### Step 4: Check the public key
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+
+### Step 5: Generate Key
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-### Step 5: Copy the public key
+### Step 6: Copy the public key
 ```bash
 cat ~/.ssh/id_ed25519.pub | clip.exe
 ```
 
-### step 6: Put key to github
+### step 7: Put key to github
 ```bash
 GitHub → Settings → SSH and GPG keys → New SSH key → paste
 ```
