@@ -67,13 +67,20 @@ git clone git@github.com:username/repository.git
 ```
 pipeline {
     agent any
-
+    
+    environment{
+        cloning_directory = 'E:/Laravel/Laravel_Projects'
+    }
+    
     stages {
         stage('Clone GitHub Repo') {
             steps {
-                git branch: 'main',
+               echo "clonning...."
+               dir("${cloning_directory}"){
+                    git branch: 'main',
                     url: 'git@github.com:masterArnob/Advanced-Laravel-Concepts.git',
                     credentialsId: 'my-ssh-private-key'
+               }
             }
         }
 
