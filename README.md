@@ -64,7 +64,7 @@ git clone git@github.com:username/repository.git
 
 
 ### Cloning github repository
-```
+```groovy
 pipeline{
     agent any
     
