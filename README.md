@@ -88,3 +88,32 @@ pipeline{
     }
 }
 ```
+
+### Cloning repository of specific branch
+```
+pipeline{
+    agent any
+    
+    environment{
+        SSH_CREDENTIALS = 'my-ssh-private-key'
+        REPOSITORY_URL = 'https://github.com/masterArnob/testing.git'
+        BRANCH_NAME = 'masterArnob-patch-1'
+        APP_NAME = 'testing'
+    }
+    
+    stages{
+        stage('cloning-repo'){
+            steps{
+                echo "start cloning..."
+            
+                sshagent(credentials: ["${SSH_CREDENTIALS}"]){
+                    sh 'rm -rf ${APP_NAME}'
+                    sh 'git clone --branch ${BRANCH_NAME} --single-branch ${REPOSITORY_URL} ${APP_NAME}'
+                 }
+                
+                echo "clonnig finish..."
+            }
+        }
+    }
+}
+```
