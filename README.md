@@ -65,29 +65,18 @@ git clone git@github.com:username/repository.git
 
 ### Cloning github repository
 ```
-pipeline {
+pipeline{
     agent any
     
-    environment{
-        cloning_directory = 'E:/Laravel/Laravel_Projects'
-    }
-    
-    stages {
-        stage('Clone GitHub Repo') {
-            steps {
-               echo "clonning...."
-               dir("${cloning_directory}"){
-                    git branch: 'main',
-                    url: 'git@github.com:masterArnob/Advanced-Laravel-Concepts.git',
-                    credentialsId: 'my-ssh-private-key'
-               }
-            }
-        }
-
-        stage('List Files') {
-            steps {
-                sh 'ls -la'
-            }
+    stages{
+        stage('cloning-repo'){
+            echo "start cloning..."
+            
+             sshagent(credentials: ['my-ssh-private-key']){
+                    sh 'git clone git@github.com:v1p3r75/friedshop-back-laravel.git'
+                }
+                
+            echo "clonnig finish..."
         }
     }
 }
