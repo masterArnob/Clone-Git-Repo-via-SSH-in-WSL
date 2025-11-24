@@ -68,13 +68,18 @@ git clone git@github.com:username/repository.git
 pipeline{
     agent any
     
+    environment{
+        SSH_CREDENTIALS = 'my-ssh-private-key'
+        REPOSITORY_URL = 'git@github.com:Faizanabid36/mon-cherri.git'
+    }
+    
     stages{
         stage('cloning-repo'){
             steps{
                 echo "start cloning..."
             
-                sshagent(credentials: ['my-ssh-private-key']){
-                    sh 'git clone git@github.com:v1p3r75/friedshop-back-laravel.git'
+                sshagent(credentials: ["${SSH_CREDENTIALS}"]){
+                    sh 'git clone ${REPOSITORY_URL}'
                  }
                 
                 echo "clonnig finish..."
