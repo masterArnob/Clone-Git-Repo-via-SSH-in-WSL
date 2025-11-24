@@ -90,7 +90,7 @@ pipeline{
 ```
 
 ### Cloning repository of specific branch
-```
+```groovy
 pipeline{
     agent any
     
