@@ -117,3 +117,38 @@ pipeline{
     }
 }
 ```
+
+### When code push in the github then jenkins should clone the code evry 30 sec
+```groovy
+pipeline {
+    agent any
+
+    // Checks GitHub every 30 seconds
+    // → If NO push → does NOTHING (super fast, no work)
+    // → If push detected → runs and clones fresh code
+    triggers {
+        pollSCM('*/30 * * * *')   // Every 30 seconds
+    }
+
+    environment {
+        APP_NAME = 'testing'
+    }
+
+    stages {
+        stage('Clone Only When Push Detected') {
+            steps {
+                echo "New push found! Deleting old code and cloning fresh..."
+
+                sh 'rm -rf ${APP_NAME}'
+                sh 'git clone https://github.com/masterArnob/testing.git ${APP_NAME}'
+
+                echo "Done! Fresh code is now in folder: ${APP_NAME}"
+            }
+        }
+    }
+}
+```
+
+### When code push in the github then jenkins should clone the code using weebhook
+```groovy
+```
