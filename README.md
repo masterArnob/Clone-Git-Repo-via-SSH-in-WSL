@@ -70,13 +70,15 @@ pipeline{
     
     stages{
         stage('cloning-repo'){
-            echo "start cloning..."
+            steps{
+                echo "start cloning..."
             
-             sshagent(credentials: ['my-ssh-private-key']){
+                sshagent(credentials: ['my-ssh-private-key']){
                     sh 'git clone git@github.com:v1p3r75/friedshop-back-laravel.git'
-                }
+                 }
                 
-            echo "clonnig finish..."
+                echo "clonnig finish..."
+            }
         }
     }
 }
